@@ -14,7 +14,7 @@ class HomePage extends Component {
         this.setState({ movies: response.data.results });
     }
     render() {
-        // console.log(this.props.match.url);
+        console.log(this.props.match.url);
         return (
             <>
                 <h1>домашняя страница со списком популярных кинофильмов</h1>
@@ -22,7 +22,7 @@ class HomePage extends Component {
                 <ul>
                     {this.state.movies.map(movie => (
                         <li key={movie.id}>
-                            <Link to={`${this.props.match.url}/${movie.id}`}>{movie.title}</Link>
+                            <Link to={`${this.props.match.url}/${movie.id}/${movie.poster_path}`}>{movie.title}</Link>
                         </li>
                     ))}
                 </ul>

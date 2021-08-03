@@ -1,26 +1,38 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
+// import { Link } from 'react-router-dom';
+// import Cast from './Cast';
+// import Reviews from './Reviews';
 
 class MovieDetailsPage extends Component {
-    state = {
-        movie: null,
-    };
-
-    async componentDidMount() {
-        const { movieId } = this.props.match.params;
-
-        const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=08685f82d21c93cd92857dcadddfeb71`)
-        // console.log(response.data);
-        this.setState({ movie: response.data });
-    }
+   
 
     render() {
+        // const { match } = this.props;
+        
         return (
             <>
                 <h1>страница с детальной информацией о кинофильме {this.props.match.movieId}</h1>
 
-                <img src={this.state.backdrop_path} alt="" />
-                <h2>{this.state.title}</h2>
+               {/* 
+                {this.state.movies.map(movie => (
+                    <img src={`${this.props.match.url}/${backdrop_path}`} alt="" />
+                    
+                ))} */}
+                
+                
+
+                {/* <ul>
+                    <li>
+                        <NavLink to={`${match.url}/${movie.id}/cast`} className="NavLink" activeClassName="NavLink--active">Cast</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to={`${match.url}/${movie.id}/reviews`} className="NavLink" activeClassName="NavLink--active">Reviews</NavLink>
+                    </li>
+                </ul> */}
+
+                {/* <Route path={`${match.path}/:movieId/cast`} component={Cast}></Route> */}
+                {/* <Route path={`${match.path}/:movieId/reviews`} component={Reviews}></Route> */}
             </>
         )
     }

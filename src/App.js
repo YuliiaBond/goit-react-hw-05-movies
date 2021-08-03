@@ -3,8 +3,8 @@ import { Route, NavLink, Switch } from 'react-router-dom';
 import HomePage from './views/HomePage';
 import MoviesPage from './views/MoviesPage';
 import MovieDetailsPage from './views/MovieDetailsPage';
-import Cast from './views/Cast';
-import Reviews from './views/Reviews';
+// import Cast from './views/Cast';
+// import Reviews from './views/Reviews';
 import NotFoundView from './views/NotFoundView';
 import './style.css'
 
@@ -21,20 +21,20 @@ const App = () => (
       <li>
         <NavLink exact to="/movies/:movieId" className="NavLink" activeClassName="NavLink--active">MovieDetailsPage</NavLink>
       </li>
-      <li>
+      {/* <li>
         <NavLink to="/movies/:movieId/cast" className="NavLink" activeClassName="NavLink--active">Cast</NavLink>
       </li>
       <li>
         <NavLink to="/movies/:movieId/reviews" className="NavLink" activeClassName="NavLink--active">Reviews</NavLink>
-      </li>
+      </li> */}
     </ul>
 
     <Switch>
       <Route exact path="/" component={HomePage}></Route>
       <Route exact path="/movies" component={MoviesPage}></Route>
       <Route exact path="/movies/:movieId" component={MovieDetailsPage}></Route>
-      <Route path="/movies/:movieId/cast" component={Cast}></Route>
-      <Route path="/movies/:movieId/reviews" component={Reviews}></Route>
+      {/* <Route path="/movies/:movieId/cast" component={Cast}></Route>
+      <Route path="/movies/:movieId/reviews" component={Reviews}></Route> */}
       <Route component={NotFoundView}></Route>
     </Switch>
     
