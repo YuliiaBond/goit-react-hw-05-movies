@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import MoviesGallery from '../components/MoviesGallery';
+import Loader from '../components/Loader';
+import Button from '../components/Button';
+import api from '../services/api';
 
 class HomePage extends Component {
     state = {
@@ -13,33 +15,55 @@ class HomePage extends Component {
     async componentDidMount() {
         try {
             this.setState({ movies: [], currentPage: 1, error: '', isLoading: true })
-            const response = await axios.get('https://api.themoviedb.org/3/trending/all/day?api_key=08685f82d21c93cd92857dcadddfeb71&language=en-US')
+            const { currentPage } = this.state;
+            const movies = await api.fetchTrendingMovies(currentPage);
+            this.addTrendingMovies(movies, currentPage);
         } catch (error) {
-            
+            this.setState({error: 'Ooopps!!!'})
         }
         
-        console.log(response.data);
-        console.log(response.data.results);
-        this.setState({ movies: response.data.results });
     }
+
+    handleOnBtnClick = currentPage => () => {
+        this.setState({ isLoading: true });
+        api
+            .fetchTrendingMovies(currentPage)
+            .then(movies => this.addTrendingMovies(movies, currentPage))
+            .then(
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth',
+                }),
+            )
+            .catch(error => this.setState({ error }))
+            .finally(() => {
+                this.setState({ isLoading: false });
+            });
+    };
+
+    addTrendingMovies = (movies, currentPage) => {
+        this.setState({ movies, currentPage, error: '', isLoading: false });
+    };
+
     render() {
-        console.log(this.props.match.url);
+        const { movies, error, isLoading } = this.state;
         return (
             <>
-                <h1>домашняя страница со списком популярных кинофильмов</h1>
+                <h1>Домашняя страница со списком популярных кинофильмов</h1>
                 
-                <ul>
-                    {this.state.movies.map(movie => (
-                        <li key={movie.id}>
-                            <Link to={`${this.props.match.url}/${movie.id}/${movie.poster_path}`}>{movie.title}</Link>
-                        </li>
-                    ))}
-                </ul>
+                {error && <h2>Sorry!</h2>}
+
+                <MoviesGallery movies={movies} />
+
+                {isLoading && <Loader/>}
+                
+                {/* {movies.length > 19 && */}
+                    {!isLoading && (
+                    <Button onClick={this.handleOnBtnClick} />
+                )}
             </>
         )
-
     }
-    
 };
 
 export default HomePage;
