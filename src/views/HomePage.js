@@ -5,10 +5,19 @@ import axios from 'axios';
 class HomePage extends Component {
     state = {
         movies: [],
+        currentPage: 1,
+        isLoading: false,
+        error: '',
     };
 
     async componentDidMount() {
-        const response = await axios.get('https://api.themoviedb.org/3/trending/all/day?api_key=08685f82d21c93cd92857dcadddfeb71&language=en-US')
+        try {
+            this.setState({ movies: [], currentPage: 1, error: '', isLoading: true })
+            const response = await axios.get('https://api.themoviedb.org/3/trending/all/day?api_key=08685f82d21c93cd92857dcadddfeb71&language=en-US')
+        } catch (error) {
+            
+        }
+        
         console.log(response.data);
         console.log(response.data.results);
         this.setState({ movies: response.data.results });
