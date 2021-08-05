@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../style.css'
 
@@ -35,13 +35,13 @@ class MoviesPage extends Component {
     };
 
     render() {
-        console.log(this.props.match.url);
-        const { query } = this.state;
+        // console.log(this.props.match.url);
+        // const { query } = this.state;
         return (
             <>
                 <h1>страница поиска фильмов по ключевому слову</h1>
 
-                <form className="SearchForm" onSubmit={this.handleSubmit}>
+                {/* <form className="SearchForm" onSubmit={this.handleSubmit}>
                     <button type="submit" className="SearchForm-button">
                         <span className="SearchForm-button-label">Search</span>
                     </button>
@@ -55,15 +55,15 @@ class MoviesPage extends Component {
                         value={query}
                         onChange={this.handleChange}
                     />
-                </form>
+                </form> */}
 
-                <ul>
+                {/* <ul>
                     {this.state.movies.map(movie => (
                         <li key={movie.id}>
                             <Link to={`${this.props.match.url}/${movie.id}`}>{movie.title}</Link>
                         </li>
                     ))}
-                </ul>
+                </ul> */}
             </>
         )
     }

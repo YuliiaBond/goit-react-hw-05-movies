@@ -1,19 +1,38 @@
 import React from 'react';
 import AppBar from './components/AppBar';
 import Container from './components/Container'
-// import { Route, NavLink, Switch } from 'react-router-dom';
-// import HomePage from './views/HomePage';
-// import MoviesPage from './views/MoviesPage';
-// import MovieDetailsPage from './views/MovieDetailsPage';
+import { Route, Switch } from 'react-router-dom';
+import HomePage from './views/HomePage';
+import MoviesPage from './views/MoviesPage';
+import MovieDetailsPage from './views/MovieDetailsPage';
 // import Cast from './views/Cast';
 // import Reviews from './views/Reviews';
-// import NotFoundView from './views/NotFoundView';
+import NotFoundView from './views/NotFoundView';
 // import './style.css'
 
 export default function App() {
   return (
     <Container>
       <AppBar />
+
+      <Switch>
+        <Route exact path="/">
+          <HomePage />
+        </Route>
+
+        <Route exact path="/movies">
+          <MoviesPage />
+        </Route>
+
+        <Route path="/movies/:movieId">
+          <MovieDetailsPage />
+        </Route>
+        
+        <Route>
+          <NotFoundView />
+        </Route>
+      </Switch>
+
     </Container>
   )
 }
@@ -39,14 +58,14 @@ export default function App() {
 //       </li> */}
 //     </ul>
 
-//     <Switch>
-//       <Route exact path="/" component={HomePage}></Route>
-//       <Route exact path="/movies" component={MoviesPage}></Route>
-//       <Route exact path="/movies/:movieId" component={MovieDetailsPage}></Route>
-//       {/* <Route path="/movies/:movieId/cast" component={Cast}></Route>
-//       <Route path="/movies/:movieId/reviews" component={Reviews}></Route> */}
-//       <Route component={NotFoundView}></Route>
-//     </Switch>
+    // <Switch>
+    //   <Route exact path="/" component={HomePage}></Route>
+    //   <Route exact path="/movies" component={MoviesPage}></Route>
+    //   <Route exact path="/movies/:movieId" component={MovieDetailsPage}></Route>
+    //   {/* <Route path="/movies/:movieId/cast" component={Cast}></Route>
+    //   <Route path="/movies/:movieId/reviews" component={Reviews}></Route> */}
+    //   <Route component={NotFoundView}></Route>
+    // </Switch>
     
 //   </>
 // );

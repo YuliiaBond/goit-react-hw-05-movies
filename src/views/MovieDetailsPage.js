@@ -12,7 +12,7 @@ class MovieDetailsPage extends Component {
         
         return (
             <>
-                <h1>страница с детальной информацией о кинофильме {this.props.match.movieId}</h1>
+                <h1>страница с детальной информацией о кинофильме</h1>
 
                {/* 
                 {this.state.movies.map(movie => (
