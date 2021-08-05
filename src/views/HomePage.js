@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import MoviesGallery from '../components/MoviesGallery';
-import Loader from '../components/Loader';
-import Button from '../components/Button';
+// import MoviesGallery from '../components/MoviesGallery';
+// import Loader from '../components/Loader';
+// import Button from '../components/Button';
 import api from '../services/api';
 
 class HomePage extends Component {
@@ -46,21 +46,21 @@ class HomePage extends Component {
     };
 
     render() {
-        const { movies, currentPage, error, isLoading } = this.state;
+        // const { movies, currentPage, error, isLoading } = this.state;
         return (
             <>
                 <h1>Домашняя страница со списком популярных кинофильмов</h1>
                 
-                {error && <h2>Sorry!</h2>}
+                {/* {error && <h2>Sorry!</h2>}
 
                 <MoviesGallery movies={movies} />
 
                 {isLoading && <Loader/>}
                 
-                {/* {movies.length > 19 && */}
+                {movies.length > 19 &&
                     {!isLoading && (
                     <Button onClick={this.handleOnBtnClick(currentPage)} />
-                )}
+                )} */}
             </>
         )
     }
