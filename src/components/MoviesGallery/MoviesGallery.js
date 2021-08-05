@@ -5,24 +5,16 @@ import MoviesGalleryItem from '../MoviesGalleryItem';
 const MoviesGallery = ({ movies }) => {
     return (
         <ul>
-            {movies.map(({ id, poster_path: posterPath, title }) => {
-                return (
-                    <li key={id}>
-                        <MoviesGalleryItem>
-                            posterPath={posterPath};
-                            title={title}
-                            id={id}
-                        </MoviesGalleryItem>
-                    </li>
-                );
-            })
-            }
+            {movies.map(({ id, poster_path: posterPath, title }) => (
+                <MoviesGalleryItem>
+                    key={id}
+                    posterPath={posterPath}
+                    title={title}
+                    id={id}
+                </MoviesGalleryItem>
+            ))}
         </ul>
     );
 };
-
-// MoviesGallery.propTypes = {
-//     movies: PropTypes.arrayOf(PropTypes.shape).isRequired,
-// };
 
 export default MoviesGallery;

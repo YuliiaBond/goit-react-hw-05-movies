@@ -24,7 +24,7 @@ class HomePage extends Component {
         
     }
 
-    handleOnBtnClick = currentPage => () => {
+    handleOnBtnClick = currentPage => {
         this.setState({ isLoading: true });
         api
             .fetchTrendingMovies(currentPage)
@@ -46,7 +46,7 @@ class HomePage extends Component {
     };
 
     render() {
-        const { movies, error, isLoading } = this.state;
+        const { movies, currentPage, error, isLoading } = this.state;
         return (
             <>
                 <h1>Домашняя страница со списком популярных кинофильмов</h1>
@@ -59,7 +59,7 @@ class HomePage extends Component {
                 
                 {/* {movies.length > 19 && */}
                     {!isLoading && (
-                    <Button onClick={this.handleOnBtnClick} />
+                    <Button onClick={this.handleOnBtnClick(currentPage)} />
                 )}
             </>
         )

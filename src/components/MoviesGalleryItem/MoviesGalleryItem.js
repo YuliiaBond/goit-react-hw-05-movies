@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const MoviesGalleryItem = ({ posterPath, title, id, location }) => (
-    <>
+    <li>
         <Link
             to={{
                 pathname: `/movies/${id}`,
@@ -20,7 +20,7 @@ const MoviesGalleryItem = ({ posterPath, title, id, location }) => (
                 alt={title}
             />
         </Link>
-    </>
+    </li>
 );
 
 MoviesGalleryItem.propTypes = {
