@@ -13,8 +13,8 @@ export function fetchTrendingMovies() {
     return fetchWithErrorHandling(`${BASE_URL}/trending/all/day?api_key=${KEY}`);
 }
 
-export function fetchMoviesId(id) {
-    return fetchWithErrorHandling(`${BASE_URL}/movies/${id}?api_key=${KEY}&language=en-US`);
+export function fetchMoviesId(movieId) {
+    return fetchWithErrorHandling(`${BASE_URL}/movies/${movieId}?api_key=${KEY}&language=en-US`);
 }
 
 export function fetchMovieSearch(name) {
