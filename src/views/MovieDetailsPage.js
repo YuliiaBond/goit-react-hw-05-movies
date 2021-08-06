@@ -1,42 +1,28 @@
-import React, { Component } from 'react';
-// import axios from 'axios';
-// import { Link } from 'react-router-dom';
-// import Cast from './Cast';
-// import Reviews from './Reviews';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { fetchMoviesId, IMAGE_URL } from '../services/api';
 
-class MovieDetailsPage extends Component {
-   
+export default function MovieDetailsPage() {
+    const {movieId} = useParams();
 
-    render() {
-        // const { match } = this.props;
-        
-        return (
-            <>
-                <h1>страница с детальной информацией о кинофильме</h1>
+    // console.log(param);
 
-               {/* 
-                {this.state.movies.map(movie => (
-                    <img src={`${this.props.match.url}/${backdrop_path}`} alt="" />
-                    
-                ))} */}
-                
-                
+    const [movie, setMovie] = useState(null);
 
-                {/* <ul>
-                    <li>
-                        <NavLink to={`${match.url}/${movie.id}/cast`} className="NavLink" activeClassName="NavLink--active">Cast</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to={`${match.url}/${movie.id}/reviews`} className="NavLink" activeClassName="NavLink--active">Reviews</NavLink>
-                    </li>
-                </ul> */}
+    useEffect(() => {
+        fetchMoviesId(movieId).then(setMovie);
+    }, [movieId])
 
-                {/* <Route path={`${match.path}/:movieId/cast`} component={Cast}></Route> */}
-                {/* <Route path={`${match.path}/:movieId/reviews`} component={Reviews}></Route> */}
+    return (
+        <>
+        <h1>`Movie ${movieId}`</h1>
+
+        {movie && <>
+                <img src={`IMAGE_URL${movie.poster_path}`} alt={movie.title} />
+                <h2>{movie.title}</h2>
+                <p>Rating: {movie.vote_average}</p>
+                <p>Overview: {movie.overview}</p>
+                </>}
             </>
-        )
-    }
-    
+    )
 };
-
-export default MovieDetailsPage;
