@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { NavLink, Link, useRouteMatch } from 'react-router-dom';
 import {fetchTrendingMovies} from '../services/api'
 
 export default function MoviesPage() {
-    const {url} = useRouteMatch();
+    const match = useRouteMatch();
+    const { url } = useRouteMatch();
     const [movies, setMovies] = useState(null);
 
-    // console.log(match);
+    console.log(match);
 
     // useEffect(() => {
     //     moviesShelfAPI.fetchMovieSearch().then(setMovies);
@@ -24,6 +25,8 @@ export default function MoviesPage() {
             {movies && movies.map(movie => <li key={movie.id}>
                 <Link to={`${url}/${movie.id}`}>{movie.title}</Link>
                 </li>)}
+            
+           
         </>
     )
 }

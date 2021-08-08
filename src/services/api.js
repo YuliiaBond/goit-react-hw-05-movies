@@ -14,7 +14,7 @@ export function fetchTrendingMovies() {
 }
 
 export function fetchMoviesId(movieId) {
-    return fetchWithErrorHandling(`${BASE_URL}/movies/${movieId}?api_key=${KEY}&language=en-US`);
+    return fetchWithErrorHandling(`${BASE_URL}/movie/${movieId}?api_key=${KEY}&language=en-US`);
 }
 
 export function fetchMovieSearch(name) {

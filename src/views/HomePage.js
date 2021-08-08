@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import MoviesGallery from '../components/MoviesGallery';
 import { fetchTrendingMovies } from '../services/api';
 
 export default function HomePage() {
-    // const match = useRouteMatch();
-    const [movies, setMovies] = useState([]);
+   const [movies, setMovies] = useState([]);
 
-    // console.log(match);
+    
     
     useEffect(() => {
         fetchTrendingMovies()
