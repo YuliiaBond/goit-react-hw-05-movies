@@ -10,21 +10,18 @@ export default function HomePage() {
     
     useEffect(() => {
         fetchTrendingMovies()
-            .then(request => setMovies(request.results));
+            .then(request => setMovies(request.results)
+            );
     }, [])
 
+    // console.log(movies);
     return (
         <>
             <h1>Trending today</h1>
 
             <MoviesGallery movies={movies} />
 
-            {/* {movies && movies.map(movie => <li key={movie.id}>
-                <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
-                </li>)} */}
             
-
-            {/* <MoviesGallery movies={movies} /> */}
         </>
     );
 };

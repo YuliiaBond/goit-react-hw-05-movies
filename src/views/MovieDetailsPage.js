@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
-import { NavLink, useParams, useRouteMatch } from 'react-router-dom';
+import { NavLink, Switch, Route, useParams, useRouteMatch } from 'react-router-dom';
 import { fetchMoviesId, IMAGE_URL } from '../services/api';
 import styles from '../components/Navigation/Navigation.module.css';
+import Cast from './Cast'
+import Reviews from './Reviews';
+
 
 export default function MovieDetailsPage() {
     const { movieId } = useParams();
-    const { url } = useRouteMatch();
+    const { url, path } = useRouteMatch();
 
     // console.log(param);
 
@@ -52,6 +55,15 @@ export default function MovieDetailsPage() {
                 </NavLink>
                 </nav>
                 
+            <Switch>
+                <Route path={`${path}/cast`}>
+                    <Cast movieId={movieId} />
+                </Route>
+
+                <Route path={`${path}/reviews`}>
+                    <Reviews movieId={movieId} />
+                </Route>
+            </Switch>
             
             </>
     )
