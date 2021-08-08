@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { NavLink, useParams, useRouteMatch } from 'react-router-dom';
 import { fetchMoviesId, IMAGE_URL } from '../services/api';
+import styles from '../components/Navigation/Navigation.module.css';
 
 export default function MovieDetailsPage() {
     const { movieId } = useParams();
@@ -13,6 +14,7 @@ export default function MovieDetailsPage() {
     useEffect(() => {
         fetchMoviesId(movieId).then(movie => {
             setMovie(movie);
+            // console.log(movie)
         });
         }, [movieId])
 
@@ -26,15 +28,28 @@ export default function MovieDetailsPage() {
                 <h2>{movie.title}</h2>
                 <p>Rating: {movie.vote_average}</p>
                 <p>Overview: {movie.overview}</p>
+                <p>Genres: {movie.genres.map(genre => genre.name).join(' ')}</p>
                 
                 </>
             )}
 
-            
+            <h3>Additional information</h3>
             
             <nav>
-                <NavLink to={`${url}/cast`}>Cast</NavLink>
-                <NavLink to={`${url}/reviews`}>Reviews</NavLink>
+                <NavLink
+                    to={`${url}/cast`}
+                    className={styles.link}
+                    activeClassName={styles.activeLink}
+                >
+                    Cast
+                </NavLink>
+                <NavLink
+                    to={`${url}/reviews`}
+                    className={styles.link}
+                    activeClassName={styles.activeLink}
+                >
+                    Reviews
+                </NavLink>
                 </nav>
                 
             
