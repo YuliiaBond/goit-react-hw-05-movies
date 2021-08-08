@@ -62,6 +62,8 @@ export default function MovieDetailsPage() {
                             Reviews
                         </NavLink>
                     </nav>
+
+                    <hr />
                     
                     <Suspense fallback={<Loader />}>
                         <Switch>
@@ -75,7 +77,7 @@ export default function MovieDetailsPage() {
                     </Switch>
                     </Suspense>
                 </>
-            )};
+            )}
         </>
     )
 };
