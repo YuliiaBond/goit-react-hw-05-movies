@@ -16,7 +16,7 @@ const MoviesGallery = ({ movies }) => {
                         state: {from: location},
                     }}>
 
-                    <img src={IMAGE_URL + movie.poster_path} alt={movie.title}/>
+                        <img src={IMAGE_URL + movie.poster_path} alt={movie.title} width={400}/>
                     <p>{movie.title}</p>
                 </Link>
             </li>

@@ -17,8 +17,8 @@ export function fetchMoviesId(movieId) {
     return fetchWithErrorHandling(`${BASE_URL}/movie/${movieId}?api_key=${KEY}&language=en-US`);
 }
 
-export function fetchMovieSearch(name) {
-    return fetchWithErrorHandling(`${BASE_URL}/search/movie?api_key=${KEY}&query=${name}&language=en-US&page=1&include_adult=false`);
+export function fetchMovieSearch(query) {
+    return fetchWithErrorHandling(`${BASE_URL}/search/movie?api_key=${KEY}&query=${query}&language=en-US&page=1&include_adult=false`);
 }
 
 

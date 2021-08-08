@@ -1,32 +1,36 @@
 import { useState, useEffect } from 'react';
-import { NavLink, Link, useRouteMatch } from 'react-router-dom';
-import {fetchTrendingMovies} from '../services/api'
+import { fetchMovieSearch } from '../services/api';
+import Searchbar from '../components/Searchbar';
+import MoviesGallery from '../components/MoviesGallery';
 
 export default function MoviesPage() {
-    const match = useRouteMatch();
-    const { url } = useRouteMatch();
+    const [query, setQuery] = useState('');
     const [movies, setMovies] = useState(null);
 
-    console.log(match);
-
-    // useEffect(() => {
-    //     moviesShelfAPI.fetchMovieSearch().then(setMovies);
-    // }, []);
-
     useEffect(() => {
-        fetchTrendingMovies()
-            .then(request => setMovies(request.results));
-    }, [])
+        if (!query) {
+            return;
+        }
+
+        fetchMovieSearch(query).then(request => {
+            setMovies(request.results);
+        });
+    },[query])
+
+    const onClick = request => {
+        setQuery(request);
+}
+    
+
+    
 
     return (
         <>
-            <h1>Movies</h1>
+            <Searchbar onClick={onClick} />
             
-            {movies && movies.map(movie => <li key={movie.id}>
-                <Link to={`${url}/${movie.id}`}>{movie.title}</Link>
-                </li>)}
+            {movies && <MoviesGallery movies={movies} />}
+        
             
-           
         </>
     )
 }
