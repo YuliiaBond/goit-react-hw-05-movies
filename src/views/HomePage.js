@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-// import MoviesGallery from '../components/MoviesGallery';
+// import { Link } from 'react-router-dom';
+import MoviesGallery from '../components/MoviesGallery';
 import { fetchTrendingMovies } from '../services/api';
 
 export default function HomePage() {
@@ -17,9 +17,11 @@ export default function HomePage() {
         <>
             <h1>Trending today</h1>
 
-            {movies && movies.map(movie => <li key={movie.id}>
+            <MoviesGallery movies={movies} />
+
+            {/* {movies && movies.map(movie => <li key={movie.id}>
                 <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
-                </li>)}
+                </li>)} */}
             
 
             {/* <MoviesGallery movies={movies} /> */}
