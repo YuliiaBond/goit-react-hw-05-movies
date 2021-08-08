@@ -2,8 +2,6 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { IMAGE_URL } from '../../services/api';
 
-// import PropTypes from 'prop-types';
-
 const MoviesGallery = ({ movies }) => {
     const location = useLocation();
     return (

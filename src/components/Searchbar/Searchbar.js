@@ -1,8 +1,5 @@
 import React, {useState} from 'react';
-import PropTypes from 'prop-types';
 import '../../style.css';
-
-
 export default function Searchbar ({onClick}) {
     const [searchQuery, setSearchQuery] = useState('');
     
@@ -42,7 +39,3 @@ export default function Searchbar ({onClick}) {
     )
 
 };
-
-Searchbar.propTypes = {
-        query: PropTypes.string,
-    };

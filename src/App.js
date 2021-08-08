@@ -34,7 +34,7 @@ export default function App() {
             <NotFoundView />
           </Route>
         </Switch>
-        
+
       </Suspense>
 
     </Container>
@@ -47,4 +47,3 @@ export default function App() {
 // 08685f82d21c93cd92857dcadddfeb71
 // Пример API-запроса
 // https://api.themoviedb.org/3/movie/550?api_key=08685f82d21c93cd92857dcadddfeb71
-

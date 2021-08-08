@@ -22,6 +22,5 @@ export default function Reviews({ movieId }) {
                 </ul>
             ) : (<h2>No reviews</h2>)}
         </>
-        
     )
-}
+};
