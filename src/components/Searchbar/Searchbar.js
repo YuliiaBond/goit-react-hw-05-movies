@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import '../../style.css';
+import style from './Searchbar.module.css';
+
 export default function Searchbar ({onClick}) {
     const [searchQuery, setSearchQuery] = useState('');
     
@@ -19,14 +20,14 @@ export default function Searchbar ({onClick}) {
     }
 
         return (
-    <header className="Searchbar">
-        <form className="SearchForm" onSubmit={handleSubmit}>
-            <button type="submit" className="SearchForm-button">
-                <span className="SearchForm-button-label">Search</span>
+    <header className={style.Searchbar}>
+                <form className={style.SearchForm} onSubmit={handleSubmit}>
+                    <button type="submit" className={style.SearchForm_button}>
+                        <span className={style.SearchForm_button_label}>Search</span>
             </button>
 
             <input
-                className="SearchForm-input"
+                        className={style.SearchForm_input}
                 type="text"
                 autoComplete="off"
                 autoFocus

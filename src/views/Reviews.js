@@ -15,7 +15,7 @@ export default function Reviews({ movieId }) {
                     {reviews.map(el=> 
                         // return console.log(el);
                         (<li key={el.id}>
-                            <p>Author: {el.author}</p>
+                            <p><span>Author: </span>{el.author}</p>
                             <p>{el.content}</p>
                         </li>)
                     )}

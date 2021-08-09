@@ -9,11 +9,11 @@ export default function Cast({ movieId }) {
     }, [movieId]);
 
     return (
-        <ul>
+        <ul className="Cast">
             {cast.map(el => (
-                <li key={el.id}>
-                    <img src={IMAGE_URL + el.profile_path} alt={el.name} width={200} />
-                    <p>{el.name}</p>
+                <li key={el.id} className="CastItem">
+                    <img src={IMAGE_URL + el.profile_path} alt={el.name} className="CastItem_img" />
+                    <p className="CastItem_text">{el.name}</p>
                 </li>
             ))}
         </ul>
