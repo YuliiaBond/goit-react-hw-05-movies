@@ -2,20 +2,20 @@ import React, {useState} from 'react';
 import style from './Searchbar.module.css';
 
 export default function Searchbar ({onSubmit}) {
-    const [query, setQuery] = useState('');
+    const [searchQuery, setSearchQuery] = useState('');
     
     const handleChange = event => {
-        setQuery(event.currentTarget.value.toLowerCase());
+        setSearchQuery(event.currentTarget.value.toLowerCase());
     };
 
     const handleSubmit = event => {
         event.preventDefault();
 
-        if (query.trim() === '') {
+        if (searchQuery.trim() === '') {
             alert('Enter your request, please!');
             return;
         }
-        onSubmit(query);
+        onSubmit(searchQuery);
         
     }
 
@@ -32,7 +32,7 @@ export default function Searchbar ({onSubmit}) {
                 autoComplete="off"
                 autoFocus
                 placeholder="Search movies"
-                value={query}
+                value={searchQuery}
                 onChange={handleChange}
             />
         </form>
