@@ -11,15 +11,15 @@ const Reviews = lazy(() => import('./Reviews') /* webpackChunkName: "Reviews" */
 export default function MovieDetailsPage() {
     const history = useHistory();
     const location = useLocation();
-    console.log(history);
-    console.log(location);
+    // console.log(history);
+    // console.log(location);
 
     const { movieId } = useParams();
     const { url, path } = useRouteMatch();
     const [movie, setMovie] = useState(null);
     
     const { current } = useRef(location.state);
-    // console.log(param);
+    // console.log(current);
 
     useEffect(() => {
         fetchMoviesId(movieId).then(movie => {
@@ -30,7 +30,7 @@ export default function MovieDetailsPage() {
 
     const onGoBack = () => {
         history.push(current ? current.from : '/movies')
-        // history.push(location?.state?.from ?? '/movies')
+        // history.push(location?.state?.from || '/movies')
 
         // if (location && location.state && location.state.from) {
         //     history.push(location.state.from);
