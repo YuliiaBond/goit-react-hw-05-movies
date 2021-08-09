@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { NavLink, Switch, Route, useParams, useRouteMatch, useHistory, useLocation } from 'react-router-dom';
 import Loader from '../components/Loader'
 import { fetchMoviesId, IMAGE_URL } from '../services/api';
@@ -11,10 +11,14 @@ const Reviews = lazy(() => import('./Reviews') /* webpackChunkName: "Reviews" */
 export default function MovieDetailsPage() {
     const history = useHistory();
     const location = useLocation();
+    console.log(history);
+    console.log(location);
+
     const { movieId } = useParams();
     const { url, path } = useRouteMatch();
     const [movie, setMovie] = useState(null);
     
+    const { current } = useRef(location.state);
     // console.log(param);
 
     useEffect(() => {
@@ -25,8 +29,16 @@ export default function MovieDetailsPage() {
     }, [movieId]);
 
     const onGoBack = () => {
-        history.push(location?.state?.from ?? '/');
+        history.push(current ? current.from : '/movies')
+        // history.push(location?.state?.from ?? '/movies')
+
+        // if (location && location.state && location.state.from) {
+        //     history.push(location.state.from);
+        //     return;
+        // }
+        // history.push('/');
     }
+
 
     return (
         <>

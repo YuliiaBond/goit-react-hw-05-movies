@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import MoviesGallery from '../components/MoviesGallery';
 import { fetchTrendingMovies } from '../services/api';
+import '../style.css';
 
 export default function HomePage() {
     const [movies, setMovies] = useState([]);

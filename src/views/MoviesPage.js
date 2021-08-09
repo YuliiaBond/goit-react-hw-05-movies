@@ -23,7 +23,7 @@ export default function MoviesPage() {
 
     return (
         <>
-            <Searchbar onClick={onClick} />
+            <Searchbar onSubmit={onClick} />
             
             {movies && <MoviesGallery movies={movies} />}
         </>
