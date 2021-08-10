@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 import style from './Searchbar.module.css';
 
 export default function Searchbar ({onSubmit}) {
     const [searchQuery, setSearchQuery] = useState('');
+    const location = useLocation();
+    const history = useHistory();
     
     const handleChange = event => {
         setSearchQuery(event.currentTarget.value.toLowerCase());
@@ -15,10 +18,10 @@ export default function Searchbar ({onSubmit}) {
             alert('Enter your request, please!');
             return;
         }
+        history.push({ ...location, search: `query=${searchQuery}` });
         onSubmit(searchQuery);
-        
     }
-
+    
         return (
     <header className={style.Searchbar}>
                 <form className={style.SearchForm} onSubmit={handleSubmit}>

@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef, lazy, Suspense } from 'react';
-import { NavLink, Switch, Route, useParams, useRouteMatch, useHistory, useLocation } from 'react-router-dom';
+import { useState, useEffect, lazy, Suspense } from 'react';
+import { NavLink, Link, Switch, Route, useParams, useRouteMatch, useHistory, useLocation } from 'react-router-dom';
 import Loader from '../components/Loader'
 import { fetchMoviesId, IMAGE_URL } from '../services/api';
 import styles from '../components/Navigation/Navigation.module.css';
@@ -18,9 +18,6 @@ export default function MovieDetailsPage() {
     const { url, path } = useRouteMatch();
     const [movie, setMovie] = useState(null);
     
-    const { current } = useRef(location.state);
-    // console.log(current);
-
     useEffect(() => {
         fetchMoviesId(movieId).then(movie => {
             setMovie(movie);
@@ -29,15 +26,17 @@ export default function MovieDetailsPage() {
     }, [movieId]);
 
     const onGoBack = () => {
-        history.push(current ? current.from : '/movies')
-        // history.push(location?.state?.from || '/movies')
+        <Link
+            to={{
+                pathname: `${url}movies/${movie.id}`,
+                state: { from: location },
+            }}>
+            
+            </Link>
+        // history.push(current ? current.from : '/movies')
+        history.push(location?.state?.from ?? '/')
 
-        // if (location && location.state && location.state.from) {
-        //     history.push(location.state.from);
-        //     return;
-        // }
-        // history.push('/');
-    }
+        }
 
 
     return (
