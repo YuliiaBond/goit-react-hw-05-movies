@@ -1,5 +1,5 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
-import { NavLink, Link, Switch, Route, useParams, useRouteMatch, useHistory, useLocation } from 'react-router-dom';
+import { NavLink, Switch, Route, useParams, useHistory, useLocation } from 'react-router-dom';
 import Loader from '../components/Loader'
 import { fetchMoviesId, IMAGE_URL } from '../services/api';
 import styles from '../components/Navigation/Navigation.module.css';
@@ -15,8 +15,12 @@ export default function MovieDetailsPage() {
     // console.log(location);
 
     const { movieId } = useParams();
-    const { url, path } = useRouteMatch();
     const [movie, setMovie] = useState(null);
+    
+    let locationValue = location.state;
+    if (location.state) {
+        locationValue = location.state.from;
+    }
     
     useEffect(() => {
         fetchMoviesId(movieId).then(movie => {
@@ -26,15 +30,12 @@ export default function MovieDetailsPage() {
     }, [movieId]);
 
     const onGoBack = () => {
-        <Link
-            to={{
-                pathname: `${url}movies/${movie.id}`,
-                state: { from: location },
-            }}>
-            
-            </Link>
+        if (!location.state) {
+            history.push('/');
+            return;
+        }
         // history.push(current ? current.from : '/movies')
-        history.push(location?.state?.from ?? '/')
+        history.push(`${location.state.from.pathname}${location.state.from.search}`)
 
         }
 
@@ -61,7 +62,10 @@ export default function MovieDetailsPage() {
             
                     <nav>
                         <NavLink
-                            to={`${url}/cast`}
+                            to={{
+                                pathname: `/movies/${movieId}/cast`,
+                                state: { from: locationValue }
+                            }}
                             className={styles.link}
                             activeClassName={styles.activeLink}
                         >
@@ -69,7 +73,10 @@ export default function MovieDetailsPage() {
                         </NavLink>
 
                         <NavLink
-                            to={`${url}/reviews`}
+                            to={{
+                                pathname: `/movies/${movieId}/reviews`,
+                                state: { from: locationValue }
+                            }}
                             className={styles.link}
                             activeClassName={styles.activeLink}
                         >
@@ -81,11 +88,11 @@ export default function MovieDetailsPage() {
                     
                     <Suspense fallback={<Loader />}>
                         <Switch>
-                            <Route path={`${path}/cast`}>
+                            <Route path={`/movies/${movieId}/cast`}>
                                 <Cast movieId={movieId} />
                             </Route>
 
-                            <Route path={`${path}/reviews`}>
+                            <Route path={`/movies/${movieId}/reviews`}>
                                 <Reviews movieId={movieId} />
                             </Route>
                     </Switch>
